@@ -1,0 +1,13 @@
+import Link from "next/link";
+export default function JobsPage() {
+  return (
+    <div className ="flex flex-col items-center justify-center h-screen">
+        <h1 className="text-4xl font-bold">Jobs</h1>
+        <div className="flex flex-col items-center justify-center border-2 border-gray-300 p-4 rounded-md">
+            <h2 className="text-2xl font-bold">Frontend Engineer</h2>
+            <p className="text-sm text-gray-500">Remote Position</p>
+            <Link href="/jobs/1" className="bg-blue-500 text-white p-2 rounded-md">View Job</Link>
+        </div>
+    </div>
+    );
+}
