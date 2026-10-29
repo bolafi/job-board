@@ -28,5 +28,8 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/amazing-jobs/:path*', '/jobs/:path*']
-}
+    matcher: [
+      // Exclude API routes, static files, image optimizations, .png files, and service worker
+      '/((?!api|_next/static|_next/image|.*\\.png$|sw\.js$).*)',
+    ],
+  }
