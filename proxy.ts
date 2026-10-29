@@ -9,18 +9,19 @@ export function proxy(request: NextRequest) {
   const pathname= url.pathname
 
   console.log("Host: ", host);
-  console.log("Next URL: ", url);
   console.log("Pathname: ", pathname);
 
   // Rule : check for admin.wathifa.site then enter the dashboard
   const isAdminHost = host.includes('admin.wathifa.site');
   if(isAdminHost) {
+    console.log("[IsAdminHost] Redirecting to dashboard");
     return NextResponse.redirect(new URL('/dashboard', request.url))
   }
 
   // Rule: check if wathifa.site and trying to access /dashboard then redirect to home
   const isMainHost = host.includes('wathifa.site');
   if(isMainHost && pathname.includes('/dashboard')) {
+    console.log("[IsMainHost] Redirecting to home");
     return NextResponse.redirect(new URL('/', request.url))
   }
 
@@ -30,6 +31,6 @@ export function proxy(request: NextRequest) {
 export const config = {
     matcher: [
       // Exclude API routes, static files, image optimizations, .png files, and service worker
-      '/((?!api|_next/static|_next/image|.*\\.png$|sw\.js$).*)',
+      '/((?!api/|_next/static|_next/image|.*\\.png$|sw\.js$).*)',
     ],
   }
